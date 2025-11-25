@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="wrapper">
+        <div class="container" style="max-width: 400px; margin-top: 100px;">
+            <h2 class="title">Вхід</h2>
+            <div class="content">
+                <input type="text" id="username" class="control" placeholder="Ваше ім'я">
+                <button onclick="login()" class="btn">Увійти</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-screen" class="wrapper hidden">
+        <header class="header">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="logo">My Library</h1>
+                <nav class="nav">
+                    <span id="user-display" class="user"></span>
+                    <button onclick="logout()" class="btn" style="background: grey;">Вийти</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main container">
+            
+            <div class="row control-panel">
+                
+                <section class="section col-half">
+                    <h3 class="subtitle">1. Новий автор</h3>
+                    <div class="row">
+                        <input type="text" id="newAuthorName" class="control" placeholder="Ім'я автора">
+                        <button onclick="addAuthor()" class="btn">Додати автора</button>
+                    </div>
+                </section>
+
+                <section class="section col-half">
+                    <h3 class="subtitle">2. Нова книга</h3>
+                    <div class="row">
+                        <select id="authorSelect" class="control"></select>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="newBookTitle" class="control" placeholder="Назва книги">
+                        <button onclick="addBook()" class="btn" style="background: #17a2b8;">Додати книгу</button>
+                    </div>
+                </section>
+            </div>
+
+            <div class="row" style="margin-bottom: 20px; align-items: center;">
+                <input type="text" id="searchAuthor" class="control" placeholder="Пошук (автор або книга)..." oninput="renderApp()">
+                <button onclick="exportData()" class="btn" style="background: #28a745; min-width: 120px;">Експорт (CSV)</button>
+            </div>
+
+            <div id="library-list" class="grid-list">
+                </div>
+
+        </main>
+    </div>
+
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h3 class="subtitle">Редагувати назву</h3>
+            <input type="text" id="edit-input" class="control" placeholder="Введіть нову назву">
+            <div class="row" style="justify-content: flex-end; margin-top: 15px;">
+                <button onclick="closeEditModal()" class="btn" style="background: #6c757d;">Скасувати</button>
+                <button onclick="saveEdit()" class="btn" style="background: #28a745;">Зберегти</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
